@@ -13,7 +13,7 @@ fn changelog() {
 #[test]
 fn html_root_url() {
 	version_sync::assert_contains_regex!(
-		"src/lib.rs",
+		"src/main.rs",
 		r#"^#!\[doc\(html_root_url = "https://docs\.rs/{name}/{version}"\)\]$"#
 	);
 }
