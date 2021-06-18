@@ -49,9 +49,9 @@ jobs:
         toolchain: nightly
     - run: cat CI.toml >> Cargo.toml
     - run: cargo +nightly update -Z minimal-versions
-    - run: cargo +nightly check --lib --no-default-features
-    - run: cargo +nightly check --lib
-    - run: cargo +nightly check --lib --all-features
+    - run: cargo +nightly check --bins --no-default-features
+    - run: cargo +nightly check --bins
+    - run: cargo +nightly check --bins --all-features
 
   clippy:
     name: Clippy
