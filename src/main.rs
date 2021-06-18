@@ -104,6 +104,7 @@ fn main() {
 	);
 }
 
+#[allow(dead_code)]
 fn checkmem() {
 	let base = 0xA0_00_00_00_i64; // Unmapped uncached kseg1.
 	let test_range = 0_i64..0x2000_0000;
@@ -124,8 +125,9 @@ fn checkmem() {
 			};
 		};
 
-		if let Err(_) =
-			telnet.write(format!("memory {:#x} 8 {:#x}\r\n", base + address, 1).as_bytes())
+		if telnet
+			.write(format!("memory {:#x} 8 {:#x}\r\n", base + address, 1).as_bytes())
+			.is_err()
 		{
 			continue;
 		}
@@ -140,12 +142,12 @@ fn checkmem() {
 						continue 'next_address;
 					}
 				}
-				TelnetEvent::UnknownIAC(_) => {}
-				TelnetEvent::Negotiation(_, _) => {}
-				TelnetEvent::Subnegotiation(_, _) => {}
-				TelnetEvent::TimedOut => {}
-				TelnetEvent::NoData => {}
-				TelnetEvent::Error(_) => {}
+				TelnetEvent::UnknownIAC(_)
+				| TelnetEvent::Negotiation(_, _)
+				| TelnetEvent::Subnegotiation(_, _)
+				| TelnetEvent::TimedOut
+				| TelnetEvent::NoData
+				| TelnetEvent::Error(_) => {}
 			}
 		}
 	}
