@@ -1,0 +1,1 @@
+^NoePhone > \0|memory 0x........ 8 0x1000|#memory#|memory OK|\d\d\d-\d\d:\d\d:\d\d\.\d\d\d 0x........: 
